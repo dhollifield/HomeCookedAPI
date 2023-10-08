@@ -18,6 +18,8 @@ namespace HomeCooked
 
             builder.Services.AddTransient<IMealRepository, MealRepository>();
             builder.Services.AddTransient<IUserRepository, UserRepository>();
+            builder.Services.AddTransient<IFuelTypeRepository, FuelTypeRepository>();
+            builder.Services.AddTransient<IUserMealRepository, UserMealRepository>();
 
             builder.Services.AddControllers();
 

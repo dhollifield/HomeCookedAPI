@@ -10,9 +10,7 @@
 
         public string SideDish2 { get; set; }
 
-        public int FuelTypeId { get; set; }
-
-        public FuelType FuelType{ get; set; }
+        public FuelType FuelType { get; set; }
         
     }
 }

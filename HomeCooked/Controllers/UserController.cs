@@ -26,9 +26,15 @@ namespace HomeCooked.Controllers
 
         // GET api/<UserController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            var user = _userRepository.GetUserById(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
         }
 
         // POST api/<UserController>

@@ -16,11 +16,14 @@ namespace HomeCooked.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"SELECT
-                                             id
-                                            ,main_dish
-                                            ,side_dish_1 
-                                            ,side_dish_2
-                                        FROM meals";
+                                             m.id
+                                            ,m.main_dish AS MainDish
+                                            ,m.side_dish_1 AS SideDish1
+                                            ,m.side_dish_2 AS SideDish2
+                                            ,ft.fuel_type_name AS FuelType
+                                        FROM meals m
+                                        JOIN fuel_types ft 
+                                          ON ft.id = m.fuel_type_id";
 
                     var reader = cmd.ExecuteReader();
 
@@ -31,9 +34,13 @@ namespace HomeCooked.Repositories
                         var meal = new Meal()
                         {
                             Id = DbUtils.GetInt(reader, "id"),
-                            MainDish = DbUtils.GetString(reader, "main_dish"),
-                            SideDish1 = DbUtils.GetString(reader, "side_dish_1"),
-                            SideDish2 = DbUtils.GetString(reader, "side_dish_2")
+                            MainDish = DbUtils.GetString(reader, "MainDish"),
+                            SideDish1 = DbUtils.GetString(reader, "SideDish1"),
+                            SideDish2 = DbUtils.GetString(reader, "SideDish2"),
+                            FuelType = new FuelType()
+                            {
+                                FuelTypeName = DbUtils.GetString(reader, "FuelType")
+                            }
                         };
 
                         meals.Add(meal);
@@ -43,18 +50,6 @@ namespace HomeCooked.Repositories
                 }
             }
         }
-
-        //public List<Meal> GetUserMeals()
-        //{
-        //    using (var conn = Connection)
-        //    {
-        //        conn.Open(); 
-        //        using (var cmd = conn.CreateCommand())
-
-                
-        //    }
-        //}
-
     }
 }
 

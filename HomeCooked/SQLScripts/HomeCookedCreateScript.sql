@@ -16,6 +16,7 @@ DROP TABLE IF EXISTS family_members
 CREATE TABLE users (
   id integer PRIMARY KEY IDENTITY,
   email varchar(255),
+  password varchar(255),
   first_name varchar(255),
   last_name varchar(255)
 );
@@ -72,11 +73,11 @@ VALUES
 ('Snack');
 
 INSERT INTO 
-users(email, first_name, last_name)
+users(email, password, first_name, last_name)
 VALUES 
-('deannahollifield@gmail.com', 'Deanna', 'Hollifield'),
-('katie@rhp.com', 'Katie', 'Greenwood'),
-('dkilgore@randallhouse.com', 'Deborah', 'Kilgore');
+('deannahollifield@gmail.com', 'password1', 'Deanna', 'Hollifield'),
+('katie@rhp.com', 'password2','Katie', 'Greenwood'),
+('dkilgore@randallhouse.com', 'password3','Deborah', 'Kilgore');
 
 INSERT INTO 
 fuel_types(fuel_type_name)
